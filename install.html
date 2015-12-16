@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="//api.bitrix24.com/api/v1/"></script>
+</head>
+<body></body>
+</html>
+<script type="text/javascript">
+var params = {
+   'CODE': 'cf',
+   'HANDLER': 'https://apps-b1594903.bitrix24-cdn.com/b1594903/app_local/b75ddbe0b66800dd8c7fa27378d3874b/handler.php',
+   //'AUTH_USER_ID': 1,
+   'USE_SUBSCRIPTION': 'N',
+   'NAME': {
+      'ru': 'Contur focus',
+      'en': 'Contur focus'
+   },
+   'DESCRIPTION': {
+      'ru': 'Contur focus',
+      'en': 'Contur focus'
+   },
+   'PROPERTIES': {
+      'q': {
+         'Name': {
+            'ru': 'Query string',
+            'en': 'Query string'
+         },
+         'Description': {
+            'ru': 'Query string',
+            'en': 'Query string'
+         },
+         'Type': 'string',
+         'Required': 'Y',
+         'Multiple': 'N',
+         'Default': '{=Document:NAME}'
+      }
+   },
+   'RETURN_PROPERTIES': {
+      'output': {
+         'Name': {
+            'ru': 'Searched',
+            'en': 'Searched'
+         },
+         'Type': 'string',
+         'Multiple': 'N',
+         'Default': null
+      }
+   },
+   'DOCUMENT_TYPE': ['lists', 'BizprocDocument', 'iblock_1'],
+   'FILTER': {
+      INCLUDE: [
+         ['lists']
+      ]
+   }
+};
+
+BX24.callMethod(
+   'bizproc.activity.add',
+   params,
+   function(result)
+   {
+      if(result.error())
+         alert("Error: " + result.error());
+      else
+         alert("Success: " + result.data());
+   }
+);
+</script>
